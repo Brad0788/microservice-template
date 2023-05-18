@@ -1,5 +1,4 @@
-module User
-  class UserCreator
+class UserCreator
       def initialize(user_params)
         @user_params = user_params
       end
@@ -16,5 +15,5 @@ module User
       def delete_user(user)
         user.destroy
       end
-  end
 end
+
