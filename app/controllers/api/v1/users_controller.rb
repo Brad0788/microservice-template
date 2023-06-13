@@ -44,7 +44,8 @@ module Api
           private
         
           def set_user
-            @user = User.find(params[:id])
+            #@user = User.find(params[:id])
+            @user = User.search(params[:id]).records.first
           end
         
           def user_params

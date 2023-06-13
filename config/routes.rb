@@ -5,6 +5,14 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
+  #resources :roles, path: '/roles/create', only: [:create]
+  resources :roles do
+    collection do
+      post 'create', to: 'roles#create'
+      get 'all', to: 'roles#index'
+    end
+  end
+  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

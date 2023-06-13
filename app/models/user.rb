@@ -1,6 +1,9 @@
+require 'elasticsearch/model'
 class User < ApplicationRecord
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable, it had :database_authenticatable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2]
@@ -29,4 +32,6 @@ class User < ApplicationRecord
       self.modified_date = Time.now.utc
     end
 end
+User.__elasticsearch__.create_index!
+User.import
   
